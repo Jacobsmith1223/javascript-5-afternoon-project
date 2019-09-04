@@ -23,8 +23,9 @@ function outer() {
 */
   
 // Code Here
+let inner = outer()
 
-
+inner()
 
 //Once you do that, invoke inner.
 
@@ -53,6 +54,9 @@ function callFriend(name) {
 
 //Code Here
 
+let callJake = callFriend('Jake')
+
+callJake('435-555-9248')
 
 
 ////////// PROBLEM 3 //////////
@@ -62,15 +66,21 @@ function callFriend(name) {
 */
 
 //Code Here
+function makeCounter(){
+  let num = 0
+  function numNums(){
+   return ++num
+  }
+  return numNums
+}
 
 
-
-//Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+// Uncomment this once you make your function
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -86,10 +96,16 @@ function callFriend(name) {
 */
 
 function counterFactory(value) {
-  // Code here.
+  function inc() {
+    return ++value
+  }
+  function dec(){
+    return --value
+  }
 
   return {
-
+    inc,
+    dec
   };
 }
 
@@ -111,16 +127,18 @@ counter = counterFactory(10);
 
 function motivation( firstname, lastname ) {
   var welcomeText = "You're doing awesome, keep it up";
-
+  function message(){
+    return `${welcomeText} ${firstname} ${lastname}.`
+  }
   // code message function here.
 
   //Uncommment this to return the value of your message function
-  //return message;
+  return message;
 }
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
 
-
+greeting()
 
 ////////// PROBLEM 6 //////////
 
@@ -143,7 +161,9 @@ var module = (function() {
   // Anything that is being returned is made public and can be invoked from
   // outside our lexical scope
   return {
-    // Code here.
+    publicMethod: function(){
+      return privateMethod()
+    }
   };
 })();
 
@@ -162,7 +182,12 @@ function secretNumber() {
   var secret = 143;
 
   return {
-    // Code here
+    addToSecret: function(num){
+      return secret += num
+    },
+    takeAwayFromSecret: function(num){
+      return secret -= num
+    }
   };
 }
 
@@ -192,5 +217,15 @@ function timeOutCounter() {
       console.log(i);
     }, i * 1000);
   }
+  return setTimeout
 }
-timeOutCounter();
+
+
+let timeOut = timeOutCounter()
+timeOut()
+timeOut()
+timeOut()
+timeOut()
+timeOut()
+timeOut()
+timeOut()
